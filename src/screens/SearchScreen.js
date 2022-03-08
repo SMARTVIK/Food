@@ -4,7 +4,8 @@ import SearchBar from '../components/SearchBar'
 import useResults from '../hooks/useResults';
 import ResultList from '../components/ResultList';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
+
   const [termText, setTermText] = useState('');
   const [searchApi, results, errorMessage] = useResults();
 
@@ -21,13 +22,10 @@ const SearchScreen = () => {
       onTermChanged={(newTerm) => setTermText(newTerm)} 
       onTermSubmitted={()=> searchApi(termText)}/>
       {errorMessage ? <Text>{errorMessage}</Text> : null}
-      <Text style={{marginLeft: 10, backgroundColor: 'white'}}>We have found {results.length} results</Text>
       <ScrollView style={{backgroundColor: 'white'} }>
-      <ResultList results={filterResultsByPrice('$')} title="Cost Effective"/>
-      <ResultList results={filterResultsByPrice('$$')} title="Bit Pricer"/>
-      <ResultList results={filterResultsByPrice('$$')} title="Bit Pricer"/>
-      <ResultList results={filterResultsByPrice('$$')} title="Bit Pricer"/>
-      <ResultList results={filterResultsByPrice('$$$')} title="Big Spender"/>
+      <ResultList navigation={navigation} results={filterResultsByPrice('$')} title="Cost Effective"/>
+      <ResultList navigation={navigation} results={filterResultsByPrice('$$')} title="Bit Pricer"/>
+      <ResultList navigation={navigation} results={filterResultsByPrice('$$')} title="Bit Pricer"/>
       </ScrollView>
       
     </>
