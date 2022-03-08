@@ -4,6 +4,10 @@ import ResultDetails from '../components/ResultDetails';
 import {withNavigation} from 'react-navigation';
 
 const ResultList = ({title, results, navigation}) => {
+    if(!results.length) {
+        return null
+    }    
+    
     return <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         <FlatList 
@@ -13,7 +17,7 @@ const ResultList = ({title, results, navigation}) => {
         keyExtractor={(result) => result.id}
         renderItem={({item}) => {
             return (
-                <TouchableOpacity onPress={() => {navigation.navigate('ResultShow')}}>
+                <TouchableOpacity onPress={() => {navigation.navigate('ResultShow', {id: item.id})}}>
                     <ResultDetails item={item}/>
                 </TouchableOpacity>
             )
