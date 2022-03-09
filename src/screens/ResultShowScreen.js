@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
+import {View, Text, Image, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
 import yelp from '../api/yelp';
 
 const ResultShowScreen = ({navigation}) => {
